@@ -213,10 +213,10 @@ public class StringPractice {
 			  replace(array[i], "");
 		  }
 		  
-		  char newString = array[i];
+		  //char newString = array[i];
 	  }
 	  
-	  return newString;
+	 // return newString;
 	  
 	  return "";
   }
