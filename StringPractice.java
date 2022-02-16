@@ -94,22 +94,21 @@ public class StringPractice {
    * Do not simply copy and paste the body of isPunct( ) into this method.
    */
   public static int indexOfFirstPunct(String s, int startPosition) {
-//	  int count = 0;
-//	  String newString = s.substring(startPosition);
-//	  
-//	  
-//	  char[] array = newString.toCharArray();
-//	  
-//	  for(int i = 0; i < array.length; i++)
-//	  {
-//		  if(isPunct(array[i]))
-//			  count ++;
-//	  }
-//	  
-//	  if(count > 0)
-//		  return count;
+	  int count = 0;
+	  String newString = s.substring(startPosition);
 	  
-	  return 0;
+	  char[] array = newString.toCharArray();
+	  
+	  for(int i = array.length - 1; i >= 0; i--)
+	  {
+		  if(isPunct(array[i]))
+			  count = i;
+	  }
+	  
+	  if(count > 0)
+		  return count;
+	  else
+		  return -1;
   }
 
   /*
@@ -181,16 +180,17 @@ public class StringPractice {
   public static String substitutePunct(String s) {
 	  //Error, null and newString
 	  char[] array = s.toCharArray();
-	  char[] newString = null;
+	  char[] newString = new char[array.length];
 	  
 	  for(int i = 0; i < array.length; i++)
 	  {
-		  if(array[i] == ' ')
-			  array[i] = '.';
-		  newString[i] = array[i];
+		  if(isPunct(array[i]))
+			  array[i] = ' ';
+		  newString[i] += array[i];
 	  }
 	  
-	  return "";
+	  return newString.toString();
+	//  return "";
   }
   
   /*
@@ -205,26 +205,23 @@ public class StringPractice {
   public static String withoutPunct(String s) {
 	  //Error, cannot return type;
 	  char[] array = s.toCharArray();
+	  StringBuilder newString = new StringBuilder();
 	  
 	  for(int i = 0; i < array.length; i++)
 	  {
-		  if(isPunct(array[i]))
+		  if(!isPunct(array[i]))
 		  {
-			  replace(array[i], "");
+			  newString.append(array[i]);
 		  }
 		  
-		  //char newString = array[i];
+		  //newString[i] = array[i];
 	  }
 	  
-	 // return newString;
 	  
-	  return "";
+	  return newString.toString();
+	  
+	  //return "";
   }
-
-  private static void replace(char c, String string) {
-	// TODO Auto-generated method stub
-	
-}
 
 /* returns true if c is found in s or false otherwise */
   public static boolean foundIn(String s, char c) {
@@ -232,10 +229,10 @@ public class StringPractice {
 	  for(int i = 0; i < array.length; i++)
 	  {
 		  if(array[i] == c)
-			  return false;
+			  return true;
 	  }
 	  
-	  return true;
+	  return false;
   }
 
   /*
@@ -309,9 +306,11 @@ public class StringPractice {
   public static boolean consecutivePuncts(String s) {
 	  // Error, i goes out of bounds
 	  char[] array = s.toCharArray();
-	  for(int i = 0; i <= array.length; i++)
-		  if(isPunct(array[i]) == isPunct(array[i + 1]))
+	  int first = 0;
+	  for(int i = 1; i <= array.length; i++)
+		  if(isPunct(array[i]) == isPunct(array[first]))
 			  return true;
+		  
 	  return false;
   }
 }
