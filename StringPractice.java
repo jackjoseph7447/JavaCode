@@ -310,7 +310,6 @@ public class StringPractice {
 	  for(int i = 1; i <= array.length; i++)
 		  if(isPunct(array[i]) == isPunct(array[first]))
 			  return true;
-		  
 	  return false;
   }
 }
